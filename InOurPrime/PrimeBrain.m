@@ -23,20 +23,20 @@
     return prime;
 }
 
-//Create an array of prime numbers
+//Create an array of prime factors
 
 - (NSArray *)getAllPrimeFactors:(NSUInteger)number {
     NSMutableArray *primeFactors = nil;
-    int counter = 2;
+    int count = 2;
     
-    while (counter <= (int)number) {
-        if ((number % counter == 0) && [self isPrime:counter]) {
+    while (count <= (int)number) {
+        if ((number % count == 0) && [self isPrime:count]) {
             if (!primeFactors) {
                 primeFactors = [[NSMutableArray alloc] init];
             }
-            [primeFactors addObject:[NSString stringWithFormat:@"%d", counter]];
+            [primeFactors addObject:[NSString stringWithFormat:@"%d", count]];
         }
-        counter += 1;
+        count += 1;
     }
     return primeFactors;
 }

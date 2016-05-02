@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -32,6 +33,9 @@
                                     <constraint firstAttribute="width" constant="216" id="ZE8-tK-1eE"/>
                                 </constraints>
                                 <state key="normal" title="Calculate"/>
+                                <connections>
+                                    <action selector="resultsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ins-s4-emU"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ov5-W8-jAE">
                                 <rect key="frame" x="245" y="276" width="110" height="48"/>
@@ -39,20 +43,28 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTO-fy-Fy3">
+                                <rect key="frame" x="0.0" y="364" width="600" height="216"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="bTO-fy-Fy3" secondAttribute="trailing" constant="-20" id="8AS-IU-ddQ"/>
                             <constraint firstItem="ov5-W8-jAE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="B3e-cG-pad"/>
                             <constraint firstItem="720-7D-FW5" firstAttribute="centerX" secondItem="7Kn-IZ-wIS" secondAttribute="centerX" id="CwT-rA-28i"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bTO-fy-Fy3" secondAttribute="bottom" constant="20" id="KIN-ii-lmt"/>
                             <constraint firstItem="7Kn-IZ-wIS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="RPQ-oD-kKq"/>
+                            <constraint firstItem="bTO-fy-Fy3" firstAttribute="top" secondItem="ov5-W8-jAE" secondAttribute="bottom" constant="40" id="bFf-oV-NnH"/>
                             <constraint firstItem="ov5-W8-jAE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bpX-xL-oqh"/>
                             <constraint firstItem="720-7D-FW5" firstAttribute="top" secondItem="7Kn-IZ-wIS" secondAttribute="bottom" constant="20" id="lFr-w8-wQT"/>
                             <constraint firstItem="ov5-W8-jAE" firstAttribute="centerX" secondItem="720-7D-FW5" secondAttribute="centerX" id="s2d-IC-0Kl"/>
+                            <constraint firstItem="bTO-fy-Fy3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="u4k-qI-NQe"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="calculateButton" destination="720-7D-FW5" id="2FT-HN-5u4"/>
                         <outlet property="numbersTextField" destination="7Kn-IZ-wIS" id="Dnu-gr-vXl"/>
+                        <outlet property="optionsPicker" destination="bTO-fy-Fy3" id="7IT-4W-e47"/>
                         <outlet property="resultsLabel" destination="ov5-W8-jAE" id="Kfc-nE-Bei"/>
                     </connections>
                 </viewController>
