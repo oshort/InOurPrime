@@ -13,8 +13,8 @@
 //Determine if a number is prime using a for loop
 
 -(BOOL) isPrime:(NSUInteger)number{
-    BOOL prime = YES;
-    for (int i = 2; i <= number - 1; i++) {
+BOOL prime = YES;
+    for (int i = 2; i < number; i++) {
         if (number % i == 0) {
             prime = NO;
             break;
@@ -39,31 +39,20 @@
         count += 1;
     }
     return primeFactors;
+    
 }
 
-// Determine the larget common prime factor between two numbers taken from two arrays
+// Determine the larget common prime factor between two numbers taken from two arrays **NEED HELP HERE**
 
 - (NSInteger)getLargestPrimeFactorBetweenNumber:(NSUInteger)firstNumber andAnotherNumber:(NSUInteger)secondNumber {
-    
-    NSInteger largestCommonFactor = 0;
-    
-    NSArray *firstNumberArray = [[NSArray alloc] initWithArray:[self getAllPrimeFactors:firstNumber]];
-    NSArray *secondNumberArray = [[NSArray alloc] initWithArray:[self getAllPrimeFactors:secondNumber]];
+
+    NSArray *firstNumberArray = [self getAllPrimeFactors:firstNumber]];
+    NSArray *secondNumberArray = [self getAllPrimeFactors:secondNumber]];
    
-    
-    if (firstNumberArray && secondNumberArray) {
-        for (NSString *first in firstNumberArray) {
-            for (NSString *second in secondNumberArray) {
-                if (([first integerValue] == [second integerValue]) && ([first integerValue] > largestCommonFactor)) {
-                    largestCommonFactor = [first integerValue];
-                }
-            }
-        }
+    for{
+        
     }
-    
-    return largestCommonFactor;
+  
 }
-
-
 
 @end
