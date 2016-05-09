@@ -46,9 +46,19 @@
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTO-fy-Fy3">
                                 <rect key="frame" x="0.0" y="364" width="600" height="216"/>
                             </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjm-Kg-N7x">
+                                <rect key="frame" x="192" y="116" width="216" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="8r7-pP-JJz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="gjm-Kg-N7x" firstAttribute="width" secondItem="720-7D-FW5" secondAttribute="width" id="2dm-cV-Y7e"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bTO-fy-Fy3" secondAttribute="trailing" constant="-20" id="8AS-IU-ddQ"/>
                             <constraint firstItem="ov5-W8-jAE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="B3e-cG-pad"/>
                             <constraint firstItem="720-7D-FW5" firstAttribute="centerX" secondItem="7Kn-IZ-wIS" secondAttribute="centerX" id="CwT-rA-28i"/>
@@ -56,15 +66,19 @@
                             <constraint firstItem="7Kn-IZ-wIS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="RPQ-oD-kKq"/>
                             <constraint firstItem="bTO-fy-Fy3" firstAttribute="top" secondItem="ov5-W8-jAE" secondAttribute="bottom" constant="40" id="bFf-oV-NnH"/>
                             <constraint firstItem="ov5-W8-jAE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bpX-xL-oqh"/>
+                            <constraint firstItem="gjm-Kg-N7x" firstAttribute="top" secondItem="720-7D-FW5" secondAttribute="bottom" constant="8" id="cGI-70-LQQ"/>
                             <constraint firstItem="720-7D-FW5" firstAttribute="top" secondItem="7Kn-IZ-wIS" secondAttribute="bottom" constant="20" id="lFr-w8-wQT"/>
                             <constraint firstItem="ov5-W8-jAE" firstAttribute="centerX" secondItem="720-7D-FW5" secondAttribute="centerX" id="s2d-IC-0Kl"/>
                             <constraint firstItem="bTO-fy-Fy3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="u4k-qI-NQe"/>
+                            <constraint firstItem="gjm-Kg-N7x" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uCg-cv-oRk"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="calculateButton" destination="720-7D-FW5" id="2FT-HN-5u4"/>
+                        <outlet property="instructionsLabel" destination="gjm-Kg-N7x" id="JN3-IG-bAL"/>
                         <outlet property="numbersTextField" destination="7Kn-IZ-wIS" id="Dnu-gr-vXl"/>
                         <outlet property="optionsPicker" destination="bTO-fy-Fy3" id="7IT-4W-e47"/>
+                        <outlet property="resultsButton" destination="720-7D-FW5" id="hyz-P8-WtG"/>
                         <outlet property="resultsLabel" destination="ov5-W8-jAE" id="Kfc-nE-Bei"/>
                     </connections>
                 </viewController>

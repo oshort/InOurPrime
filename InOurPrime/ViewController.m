@@ -13,12 +13,11 @@
 @interface ViewController () <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 //Define our UI Properties
-
+@property (weak, nonatomic) IBOutlet UILabel *instructionsLabel;
+@property (weak, nonatomic) IBOutlet UIButton *resultsButton;
 @property (weak) IBOutlet UITextField *numbersTextField;
 @property (weak) IBOutlet UILabel *resultsLabel;
 @property (weak) IBOutlet UIPickerView *optionsPicker;
-
--(IBAction)resultsButton:(UIButton *)sender;
 
 //Make some actions to connect with our picker
 -(void)checkIfPrime:(NSString*)inputString;
@@ -53,7 +52,8 @@
     self.brain = [[PrimeBrain alloc]init];
     
     //Set the choice options for our UIPickerView
-    self.optionsArray = @[@"Choose an option below", @"Prime?", @"Prime factors?",@"Find the largest common prime factor"];
+    self.optionsArray = @[@"", @"Prime?", @"Prime factors?",@"Find the largest common prime factor"];
+    
     
 }
 
@@ -105,8 +105,44 @@
     }
 
 
--(void)retrieveLargetPrimeFactor:(NSString *)inputString {
+- (void)retrieveLargestPrimeFactor:(NSString *)numbersString {
+    NSArray *numbers = [[NSArray alloc] initWithArray:[numbersString componentsSeparatedByString:@" "]];
+    NSUInteger firstNumber = [numbers[0] integerValue];
+    NSUInteger secondNumber = [numbers[1] integerValue];
+    NSInteger largestCommonPrimeFactor = [self.brain getLargestPrimeFactorBetweenNumber:firstNumber andAnotherNumber:secondNumber];
     
+    if (largestCommonPrimeFactor > 0) {
+        self.resultsLabel.text = [NSString stringWithFormat:@"The largest common prime factor between %lu and %lu is %ld.", (unsigned long)firstNumber, (unsigned long)secondNumber, (long)largestCommonPrimeFactor];
+    } else {
+        self.resultsLabel.text = [NSString stringWithFormat:@"There are no common prime factors between %lu and %lu.", (unsigned long)firstNumber, (unsigned long)secondNumber];
+    }
+}
+
+// Format a given array to output as a sentence with formatting for the possible answers
+- (NSString *)formatStringFromArray:(NSArray *)numbersArray {
+    NSString *answerString = @"";
+    
+    if (numbersArray.count > 1) {
+        answerString = [NSString stringWithFormat:@"The prime factors for %@ are ", self.numbersTextField.text];
+    } else {
+        answerString = [NSString stringWithFormat:@"The prime factor for %@ is ", self.numbersTextField.text];
+    }
+    
+    for (NSString *primeFactor in numbersArray) {
+        if (numbersArray.count == 1) {
+            answerString = [answerString stringByAppendingString:[NSString stringWithFormat:@"%@", primeFactor]];
+        } else if ((numbersArray.count == 2) && (primeFactor == [numbersArray firstObject])) {
+            answerString = [answerString stringByAppendingString:[NSString stringWithFormat:@"%@ ", primeFactor]];
+        } else if (primeFactor == [numbersArray lastObject]) {
+            answerString = [answerString stringByAppendingString:[NSString stringWithFormat:@"and %@", primeFactor]];
+        } else {
+            answerString = [answerString stringByAppendingString:[NSString stringWithFormat:@"%@, ", primeFactor]];
+        }
+    }
+    
+    answerString = [answerString stringByAppendingString:@"."];
+    
+    return answerString;
 }
 
 #pragma mark - UIPickerViewDelegate
@@ -115,18 +151,45 @@
     return self.optionsArray[row];
 }
 
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    switch (row) {
+        case 1:
+            self.instructionsLabel.text = @"Enter a number to see if it's prime!";
+            break;
+            
+        case 2:
+            self.instructionsLabel.text = @"Enter a number to see its prime factors";
+            break;
+            
+        case 3:
+            self.instructionsLabel.text = @"Enter two numbers separated by a space to see the largest common prime factor between them.";
+            break;
+            
+        default:
+            self.instructionsLabel.text = @"";
+            self.resultsButton.enabled = NO;
+            break;
+    }
+}
 
 #pragma mark - UIPickerViewDataSource
 
-// returns the number of 'columns' to display.
+// Returns columns
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
 
-// returns the # of rows in each component..
+//Returns Rows
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     return self.optionsArray.count;
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.numbersTextField.text = @"";
+    self.resultsButton.enabled = YES;
+    self.resultsLabel.text = @"";
+}
 
 @end

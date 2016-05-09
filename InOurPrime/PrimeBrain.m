@@ -45,14 +45,21 @@ BOOL prime = YES;
 // Determine the larget common prime factor between two numbers taken from two arrays **NEED HELP HERE**
 
 - (NSInteger)getLargestPrimeFactorBetweenNumber:(NSUInteger)firstNumber andAnotherNumber:(NSUInteger)secondNumber {
-
-    NSArray *firstNumberArray = [self getAllPrimeFactors:firstNumber]];
-    NSArray *secondNumberArray = [self getAllPrimeFactors:secondNumber]];
-   
-    for{
-        
+    NSArray *firstNumberArray = [[NSArray alloc] initWithArray:[self getAllPrimeFactors:firstNumber]];
+    NSArray *secondNumberArray = [[NSArray alloc] initWithArray:[self getAllPrimeFactors:secondNumber]];
+    NSInteger largestCommonFactor = 0;
+    
+    if (firstNumberArray && secondNumberArray) {
+        for (NSString *first in firstNumberArray) {
+            for (NSString *second in secondNumberArray) {
+                if (([first integerValue] == [second integerValue]) && ([first integerValue] > largestCommonFactor)) {
+                    largestCommonFactor = [first integerValue];
+                }
+            }
+        }
     }
-  
+    
+    return largestCommonFactor;
 }
 
 @end
